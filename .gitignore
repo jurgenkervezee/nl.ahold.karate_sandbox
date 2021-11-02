@@ -1,0 +1,9 @@
+# Project exclude paths
+*.iml
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+.idea/
