@@ -2,7 +2,7 @@
 Feature: Demo voor Oelan
 
   Background:
-  *  url 'https://jsonplaceholder.typicode.com'
+    *  url 'https://jsonplaceholder.typicode.com'
 
   Scenario: Met users
     Given url 'https://jsonplaceholder.typicode.com/users/1'
@@ -48,18 +48,18 @@ Feature: Demo voor Oelan
     And match response.title == "delectus aut autem"
 
 
- Scenario Outline: Making Loads of calls
-   Given path 'users/' + <id>
-   When method get
-   Then status 200
-   And match response.name == <name>
-   And match response.company.name == <companyName>
+  Scenario Outline: Making Loads of calls
+    Given path 'users/' + <id>
+    When method get
+    Then status 200
+    And match response.name == <name>
+    And match response.company.name == <companyName>
 
-   Examples:
-     | id | name               | companyName          |
-     | 1  | 'Leanne Graham'    | 'Romaguera-Crona'    |
-     | 2  | 'Ervin Howell'     | 'Deckow-Crist'       |
-     | 3  | 'Clementine Bauch' | 'Romaguera-Jacobson' |
+    Examples:
+      | id | name               | companyName          |
+      | 1  | 'Leanne Graham'    | 'Romaguera-Crona'    |
+      | 2  | 'Ervin Howell'     | 'Deckow-Crist'       |
+      | 3  | 'Clementine Bauch' | 'Romaguera-Jacobson' |
 
 
 #  Helper Features
@@ -87,8 +87,8 @@ Feature: Demo voor Oelan
 
 # Laten zien van de report die wordt gemaakt na draaien
 
-Scenario: Jsonpath
-  Given def json =
+  Scenario: Jsonpath
+    Given def json =
 """
 {
     "store": {
@@ -130,25 +130,25 @@ Scenario: Jsonpath
 
 """
 
-  Then match json.store.book[2].title == "Moby Dick"
+    Then match json.store.book[2].title == "Moby Dick"
 
-  Then match json.store.book[*] contains {"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95}
+    Then match json.store.book[*] contains {"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95}
 
-  Then match json.store.book[*].author contains "Nigel Rees"
+    Then match json.store.book[*].author contains "Nigel Rees"
 
-  Then match json.store.book[*].author != 'Henk'
+    Then match json.store.book[*].author != 'Henk'
 
 #   Itereer over een array and check global contents
-  Then match each json.store.book  == { category: '#present', author: '#string', title: '#string', isbn: '#ignore', price: '#number' }
+    Then match each json.store.book  == { category: '#present', author: '#string', title: '#string', isbn: '#ignore', price: '#number' }
 
 #   geef aan hoeveel entries in the array hebt
-  Then match json.store.book == '#[4]'
+    Then match json.store.book == '#[4]'
 
 #  Check dat een boek met een ISBN nummer een auteur J. R. R. Tolkien heeft
-  Then match json.store.book[?(@.isbn)].author contains "J. R. R. Tolkien"
+    Then match json.store.book[?(@.isbn)].author contains "J. R. R. Tolkien"
 
 #   Select the prices of the book under 10 and check the values
-  Then match json.store.book[?(@.price < 10)].price == [8.95 , 8.99]
+    Then match json.store.book[?(@.price < 10)].price == [8.95 , 8.99]
 
   Scenario: XML kan ook
     Given def cat = <cat><name>Billie</name></cat>

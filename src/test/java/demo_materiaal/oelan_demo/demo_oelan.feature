@@ -1,7 +1,7 @@
 Feature: Demo voor Oelan
 
   Background:
-  *  url 'https://jsonplaceholder.typicode.com'
+    *  url 'https://jsonplaceholder.typicode.com'
 
 # Path en Assertions
   Scenario: Getting User 1
@@ -50,17 +50,17 @@ Feature: Demo voor Oelan
 
 
 
- Scenario Outline: Making Loads of calls
+  Scenario Outline: Making Loads of calls
 
-   Given path 'todos/'
-   When method get
-   Then status 200
-   And match response.title
+    Given path 'todos/'
+    When method get
+    Then status 200
+    And match response.title
 
 
-   Examples:
-     | id | title                                | completed|
-     | 1  | 'delectus aut autem'                 | false    |
+    Examples:
+      | id | title                                | completed|
+      | 1  | 'delectus aut autem'                 | false    |
 
 
 
@@ -91,8 +91,8 @@ Feature: Demo voor Oelan
 
 
 
-Scenario: Jsonpath jur
-  Given def json =
+  Scenario: Jsonpath jur
+    Given def json =
 """
 {
     "store": {
@@ -134,7 +134,7 @@ Scenario: Jsonpath jur
 
 """
 
-  Then match json.store.book[2].title == "Moby Dicek"
+    Then match json.store.book[2].title == "Moby Dicek"
 
 
 
